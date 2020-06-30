@@ -5,6 +5,7 @@ const Confession = require('../models/confessions');
 
 //retrieving confessions
 router.get('/confessions', (req, res, next)=>{
+    res.send('Retrieving the list of confessions')
     Confession.find(function(err, confessions){
         res.json(confessions);
     })

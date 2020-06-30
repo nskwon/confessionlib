@@ -25,7 +25,7 @@ mongoose.connection.on('error',(err)=>{
 });
 
 //port no
-const port = 80;
+const port = 8080;
 
 //adding middleware - cors
 app.use(cors());
