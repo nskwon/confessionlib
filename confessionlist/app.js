@@ -32,6 +32,7 @@ app.use(cors());
 
 //body - parser
 app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended: true}))
 
 //static files
 app.use(express.static(path.join(__dirname, 'public')));

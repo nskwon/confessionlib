@@ -1,5 +1,5 @@
 export class Confession{
     _id?: string;
-    confession: string;
+    submission: string;
     date: Date;
 }

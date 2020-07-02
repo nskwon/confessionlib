@@ -5,7 +5,6 @@ const Confession = require('../models/confessions');
 
 //retrieving confessions
 router.get('/confessions', (req, res, next)=>{
-    res.send('Retrieving the list of confessions')
     Confession.find(function(err, confessions){
         res.json(confessions);
     })
@@ -32,7 +31,7 @@ router.get('/confession/:id', (req, res, next)=>{
 //add confession
 router.post('/confession',function(req, res, next) {
     let newConfession = new Confession({
-        confession: req.body.confession
+        submission: req.body.submission
     });
 
     newConfession.save(function (err, confession){

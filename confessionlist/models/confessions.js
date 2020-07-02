@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const ConfessionSchema = mongoose.Schema({
-    confession:{
+    submission:{
         type: String,
         required: true
     },
