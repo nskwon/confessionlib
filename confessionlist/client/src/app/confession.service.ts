@@ -1,20 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Confession } from './confession';
-import { Observable,of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfessionService {
-
-  constructor(
-    private http: HttpClient,
-    private confessionService: ConfessionService) { }
-    private confessionsUrl = 'api/confessions';
-  /*
+  private finaldata = [];
+  private apiUrl = 'http://localhost:8080/api/confessions';
+  serviceproperty = "Service Created";
+  constructor(private http: HttpClient) { }
+    /*
     private log(message: string) {
       this.confessionService.addConfession(`ConfessionService: ${message}`);
     }
@@ -22,22 +17,24 @@ export class ConfessionService {
   
 
   //get all confessions
-  getConfessions(): Observable<Confession[]>{
-    return this.http.get<Confession[]>(this.confessionsUrl)
-    .pipe(
-      //tap(_ => this.log('fetched confessions')),
-      catchError(this.handleError<Confession[]>('getConfessions', []))
-    );
+  getConfessionList(){
+    return this.http.get(this.apiUrl)
   }
 
+  showTodayDate() { 
+    let ndate = new Date(); 
+    return ndate; 
+  }
+/*
   //get confession by id
   getConfession(id: number): Observable<Confession> {
-    const url = `${this.confessionsUrl}/${id}`;
+    const url = `${this.apiUrl}/${id}`;
     return this.http.get<Confession>(url).pipe(
       //tap(_ => this.log(`fetched confession id=${id}`)),
       catchError(this.handleError<Confession>(`getConfession id=${id}`))
     );
   }
+  */
 /*
   //add confession method
   addConfession(newConfession){
@@ -51,7 +48,7 @@ export class ConfessionService {
     return this.http.delete('http://localhost:8080/api/confession/'+id)
   }
   */
-
+/*
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
@@ -59,5 +56,5 @@ export class ConfessionService {
       return of(result as T);
     }
   }
-
+*/
 }
