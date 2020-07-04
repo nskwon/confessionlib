@@ -18,7 +18,7 @@ export class ConfessionService {
   addConfession(newConfession){
     var headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:8080/api/confessionsapi/confession', newConfession, {headers:headers});
+    return this.http.post('http://localhost:8080/api/confession', newConfession, {headers:headers});
   }
 
   showTodayDate() { 
