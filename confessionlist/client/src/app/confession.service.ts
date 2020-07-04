@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ConfessionService {
   private finaldata = [];
-  private apiUrl = 'http://localhost:8080/api/confessions';
+  private apiUrl = 'api/confessions';
   serviceproperty = "Service Created";
   constructor(private http: HttpClient) { }
 
@@ -18,7 +18,7 @@ export class ConfessionService {
   addConfession(newConfession){
     var headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:8080/api/confession', newConfession, {headers:headers});
+    return this.http.post('api/confession', newConfession, {headers:headers});
   }
 
   showTodayDate() { 
