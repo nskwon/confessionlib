@@ -6,23 +6,33 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ConfessionService {
   private finaldata = [];
-  private apiUrl = 'http://localhost:8080/api/confessions';
-  serviceproperty = "Service Created";
   constructor(private http: HttpClient) { }
 
   //get all confessions
   getConfessionList(){
-    return this.http.get(this.apiUrl)
+    return this.http.get('http://localhost:8080/api/confessions')
   }
 
+  //get specific confession
+  getConfession(id){
+    return this.http.get('http://localhost:8080/api/confession/'+id)
+  }
+
+  //update confession
+  updateConfession(id){
+    return this.http.get('http://localhost:8080/api/update/'+id)
+  }
+
+  //add confession
   addConfession(newConfession){
     var headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:8080/api/confession', newConfession, {headers:headers});
+    return this.http.post('http://localhost:8080/api/confession', newConfession, {headers:headers})
   }
 
-  showTodayDate() { 
-    let ndate = new Date(); 
-    return ndate; 
+  //delete confession
+  deleteConfession(id){
+    return this.http.delete('http://localhost:8080/api/confession/'+id)
   }
+  
 }

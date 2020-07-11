@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfessionService } from '../confession.service';
 import { Confession } from '../confession';
+
 @Component({
   selector: 'app-confessions',
   templateUrl: './confessions.component.html',
@@ -9,26 +10,27 @@ import { Confession } from '../confession';
 export class ConfessionsComponent implements OnInit {
 
   title = 'ConfessionLib';
-  constructor(private confessionservice: ConfessionService) {}
-  public confessiondata = [];
+  constructor(private confessionService: ConfessionService) {}
+  public confessionData = [];
   confession : Confession;
   submission : string;
+  reportCount : Number;
 
   index = 0;
 
   nextConfession(){
-    if(this.confessiondata.length > 1){
-      this.confessiondata.splice(this.index,1);
-      console.log("Current length of array: " + this.confessiondata.length);
-      this.index = Math.floor(Math.random() * Math.floor(this.confessiondata.length))
-      this.confession = this.confessiondata[this.index];
+    if(this.confessionData.length > 1){
+      this.confessionData.splice(this.index,1);
+      console.log("Current length of array: " + this.confessionData.length);
+      this.index = Math.floor(Math.random() * Math.floor(this.confessionData.length))
+      this.confession = this.confessionData[this.index];
     }
     else{
       console.log("In the else statement of nextConfession");
-      this.confessionservice.getConfessionList().subscribe((data) => {
-        this.confessiondata = Array.from(Object.keys(data), k=>data[k]);
-        this.index = Math.floor(Math.random() * Math.floor(this.confessiondata.length))
-        this.confession = this.confessiondata[this.index];
+      this.confessionService.getConfessionList().subscribe((data) => {
+        this.confessionData = Array.from(Object.keys(data), k=>data[k]);
+        this.index = Math.floor(Math.random() * Math.floor(this.confessionData.length))
+        this.confession = this.confessionData[this.index];
       })
     }
   }
@@ -37,20 +39,22 @@ export class ConfessionsComponent implements OnInit {
     const newConfession ={
       submission: this.submission
     }
-    this.confessionservice.addConfession(newConfession)
+    this.confessionService.addConfession(newConfession)
       .subscribe(confession => {
-        this.confessiondata.push(confession);
-        this.confessiondata.pop();
-        console.log(this.confessiondata);
+        this.confessionData.push(confession);
+        this.confessionData.pop();
+        console.log(this.confessionData);
       })
   }
 
+  
+
   ngOnInit() { 
-    this.confessionservice.getConfessionList().subscribe((data) => {
-      this.confessiondata = Array.from(Object.keys(data), k=>data[k]);
-      console.log(this.confessiondata);
-      this.index = Math.floor(Math.random() * Math.floor(this.confessiondata.length))
-      this.confession = this.confessiondata[this.index];
+    this.confessionService.getConfessionList().subscribe((data) => {
+      this.confessionData = Array.from(Object.keys(data), k=>data[k]);
+      console.log(this.confessionData);
+      this.index = Math.floor(Math.random() * Math.floor(this.confessionData.length))
+      this.confession = this.confessionData[this.index];
     });
   } 
 }

@@ -7,6 +7,9 @@ const ConfessionSchema = mongoose.Schema({
     },
     date:{
         type: Date, default: Date.now
+    },
+    reportCount:{
+        type: Number, default: 0
     }
 });
 

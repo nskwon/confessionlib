@@ -1,15 +1,7 @@
-<div class = "container">
-    <h2 class = "page-header"> Add Confession </h2>
-    <form (submit) ="addConfession()">
-        <div class = "form-group">
-            <label> Submission </label>
-            <input type = "text" [(ngModel)] = "submission" name = "submission" class = "form-control">
-        </div>
-        <input type = "submit" class = "btn btn btn-success" value = "Add">
-    </form>
+<!DOCTYPE html>
+<div class="rectangle">
+    <p style = "text-align:center;">{{confession.submission}}</p>
 </div>
-
-<div class = "container">
-    <h2 class = "page-header"> {{confession.submission}} </h2>
-    <input type = "button" (click) = "nextConfession()" value = "Next" class = "btn btn-danger">
+<div class="container">
+    <input type = "button" (click) = "nextConfession()" value = "Next" class = "btn btn-dark">
 </div>

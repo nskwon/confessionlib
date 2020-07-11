@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Confession = require('../models/confessions');
+const { update } = require('../models/confessions');
 
 //retrieving confessions
 router.get('/confessions', (req, res, next)=>{
@@ -15,10 +16,10 @@ router.get('/confessions', (req, res, next)=>{
 router.get('/confessions', (req, res, next)=>{
     res.status(202);
 });
-
+ 
 //retrieving specific confession
 router.get('/confession/:id', (req, res, next)=>{
-    Confession.find({_id: req.params.id}, function(err, result){
+    Confession.findOne({_id: req.params.id}, function(err, result){
         if(err){
             res.json(err);
         }
@@ -42,6 +43,37 @@ router.post('/confession',function(req, res, next) {
             res.json({msg: 'Confession added successfully!'});
         }
     })
+});
+
+//update confession
+router.put('/update/:id',function(req,res){
+    var id = req.params.id;
+    Confession.findOne({_id: id},function(err, foundObject){
+        if (err){
+            console.log(err);
+            res.status(500).send();
+        }
+        else{
+            if(!foundObject){
+                res.status(404).send();
+            }
+            else{
+                if(req.body.reportCount){
+                    foundObject.reportCount = req.body.reportCount;
+                }
+
+                foundObject.save(function(err, updatedObject){
+                    if(err){
+                        console.log(err);
+                        res.status(500).send();
+                    }
+                    else{
+                        res.send(updatedObject);
+                    }
+                });
+            }
+        }
+    });
 });
 
 //delete confession
