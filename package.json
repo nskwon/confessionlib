@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "ng": "ng",
-    "build": "ng serve --serve-path=client"
+    "build": "ng serve --serve-path=/confessionlist/client"
   },
   "repository": {
     "type": "git",
