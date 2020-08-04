@@ -8,8 +8,13 @@
     "npm": "6.x"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd confessionlist; node app.js"
+    "ng": "ng",
+    "start": "cd confessionlist; node app.js",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "postinstall": "ng build --output-path dist"
   },
   "repository": {
     "type": "git",
