@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "a mean application",
   "main": "app.js",
+  "engines": {
+    "node": "12.x",
+    "npm": "6.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "ng": "ng",
-    "build": "ng serve --serve-path=/confessionlist/client"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
