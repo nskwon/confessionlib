@@ -13,8 +13,9 @@ export class ConfessionsComponent implements OnInit {
   constructor(private confessionService: ConfessionService) {}
   public confessionData = [];
   confession : Confession;
+  _id : string
   submission : string;
-  reportCount : Number;
+  date : Date;
 
   index = 0;
 
@@ -34,20 +35,6 @@ export class ConfessionsComponent implements OnInit {
       })
     }
   }
-
-  addConfession(){
-    const newConfession ={
-      submission: this.submission
-    }
-    this.confessionService.addConfession(newConfession)
-      .subscribe(confession => {
-        this.confessionData.push(confession);
-        this.confessionData.pop();
-        console.log(this.confessionData);
-      })
-  }
-
-  
 
   ngOnInit() { 
     this.confessionService.getConfessionList().subscribe((data) => {

@@ -8,9 +8,6 @@ const ConfessionSchema = mongoose.Schema({
     date:{
         type: Date, default: Date.now
     },
-    reportCount:{
-        type: Number, default: 0
-    }
 });
 
 const Confession = module.exports = mongoose.model('Confession', ConfessionSchema);

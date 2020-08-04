@@ -45,37 +45,6 @@ router.post('/confession',function(req, res, next) {
     })
 });
 
-//update confession
-router.put('/update/:id',function(req,res){
-    var id = req.params.id;
-    Confession.findOne({_id: id},function(err, foundObject){
-        if (err){
-            console.log(err);
-            res.status(500).send();
-        }
-        else{
-            if(!foundObject){
-                res.status(404).send();
-            }
-            else{
-                if(req.body.reportCount){
-                    foundObject.reportCount = req.body.reportCount;
-                }
-
-                foundObject.save(function(err, updatedObject){
-                    if(err){
-                        console.log(err);
-                        res.status(500).send();
-                    }
-                    else{
-                        res.send(updatedObject);
-                    }
-                });
-            }
-        }
-    });
-});
-
 //delete confession
 router.delete('/confession/:id',(req, res, next)=>{
     Confession.remove({_id: req.params.id}, function(err, result){

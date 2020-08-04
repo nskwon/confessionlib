@@ -18,11 +18,6 @@ export class ConfessionService {
     return this.http.get('http://localhost:8080/api/confession/'+id)
   }
 
-  //update confession
-  updateConfession(id){
-    return this.http.get('http://localhost:8080/api/update/'+id)
-  }
-
   //add confession
   addConfession(newConfession){
     var headers = new HttpHeaders();

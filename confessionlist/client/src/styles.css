@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+html { 
+    background: url(./app/home/img/sakurabackground.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    overflow: hidden;
+}
+body {
+    height: 100%;
+    overflow: auto;
+}

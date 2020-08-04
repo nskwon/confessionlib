@@ -8,13 +8,15 @@ import { ConfessionsComponent } from './confessions/confessions.component';
 import { SubmitComponent } from './submit/submit.component';
 import { ConfessionService } from './confession.service';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ConfessionsComponent,
     AboutComponent,
-    SubmitComponent
+    SubmitComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

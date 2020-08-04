@@ -16,7 +16,7 @@ export class SubmitComponent implements OnInit {
 
   addConfession(){
     const newConfession ={
-      submission: this.submission
+      submission: this.submission,
     }
     this.confessionService.addConfession(newConfession)
       .subscribe(confession => {
