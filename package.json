@@ -10,7 +10,7 @@
   "scripts": {
     "ng": "ng",
     "start": "cd confessionlist; node app.js",
-    "build": "ng build",
+    "build": "cd confessionlist; cd client; ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
