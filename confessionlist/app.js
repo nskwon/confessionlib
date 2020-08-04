@@ -4,13 +4,14 @@ var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
 var cors = require('cors');
 var path = require('path');
+require('dotenv').config()
 
 var app = express();
 
 const route =  require('./routes/route');
 
 //connect to mongodb
-mongoose.connect('mongodb://localhost:27017/confessionlist');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/confessionlist');
 
 //on connection
 mongoose.connection.on('connected',()=>{
@@ -25,7 +26,7 @@ mongoose.connection.on('error',(err)=>{
 });
 
 //port no
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 //adding middleware - cors
 app.use(cors());
@@ -45,4 +46,4 @@ app.get('/',(req, res)=>{
     res.send('foobar');
 });
 
-app.listen(process.env.PORT || 8080)
+app.listen(port)
