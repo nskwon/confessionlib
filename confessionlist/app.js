@@ -45,6 +45,4 @@ app.get('/',(req, res)=>{
     res.send('foobar');
 });
 
-app.listen(port,()=>{
-    console.log('Server started at port: ' + port);
-});
+app.listen(process.env.PORT || 8080)
