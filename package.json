@@ -9,7 +9,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "cd confessionlist; node app.js",
+    "start": "cd confessionlist; node app.js; cd client; ng serve",
     "build": "cd confessionlist; cd client; ng build",
     "test": "ng test",
     "lint": "ng lint",
