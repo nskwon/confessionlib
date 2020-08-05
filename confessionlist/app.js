@@ -12,11 +12,11 @@ var app = express();
 app.use(bodyParser.json());
 
 if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('client/build'));
+	app.use(express.static('/client/dist/client'));
 }
 
 app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+	response.sendFile(path.join(__dirname, '/client/dist/client', 'index.html'));
 });
 
 var distDir = __dirname + "/dist/";
