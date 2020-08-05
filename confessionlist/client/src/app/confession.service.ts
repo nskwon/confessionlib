@@ -1,33 +1,43 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Confession } from './confession';
+import { Http, Response } from '@angular/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfessionService {
-  private finaldata = [];
-  constructor(private http: HttpClient) { }
+  private confessionsUrl = '/api/confessions';
+  constructor(private http: Http) { }
 
-  //get all confessions
-  getConfessionList(){
-    return this.http.get('http://localhost:8080/api/confessions')
+  // get("/api/confessions")
+  getConfessions(): Promise<void | Confession[]> {
+    return this.http.get(this.confessionsUrl)
+               .toPromise()
+               .then(response => response.json() as Confession[])
+               .catch(this.handleError);
   }
 
-  //get specific confession
-  getConfession(id){
-    return this.http.get('http://localhost:8080/api/confession/'+id)
+  // post("/api/confessions")
+  addConfession(newConfession: Confession): Promise<void | Confession> {
+    return this.http.post(this.confessionsUrl, newConfession)
+               .toPromise()
+               .then(response => response.json() as Confession)
+               .catch(this.handleError);
   }
 
-  //add confession
-  addConfession(newConfession){
-    var headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:8080/api/confession', newConfession, {headers:headers})
-  }
 
-  //delete confession
-  deleteConfession(id){
-    return this.http.delete('http://localhost:8080/api/confession/'+id)
+  // delete("/api/confessions/:id")
+  deleteConfession(delConfessionId: String): Promise<void | String> {
+    return this.http.delete(this.confessionsUrl + '/' + delConfessionId)
+               .toPromise()
+               .then(response => response.json() as String)
+               .catch(this.handleError);
   }
   
+  private handleError (error: any) {
+    let errMsg = (error.message) ? error.message :
+    error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+    console.error(errMsg); // log to console instead
+  }
+
 }

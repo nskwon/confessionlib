@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ConfessionService } from '../confession.service';
 import { Confession } from '../confession';
 
@@ -7,26 +7,19 @@ import { Confession } from '../confession';
   templateUrl: './submit.component.html',
   styleUrls: ['./submit.component.css']
 })
-export class SubmitComponent implements OnInit {
+export class SubmitComponent {
 
   constructor(private confessionService: ConfessionService) {}
-  public confessionData = [];
-  confession : Confession;
-  submission : string;
+  @Input()
+  confession: Confession;
 
-  addConfession(){
-    const newConfession ={
-      submission: this.submission,
-    }
-    this.confessionService.addConfession(newConfession)
-      .subscribe(confession => {
-        this.confessionData.push(confession);
-        this.confessionData.pop();
-        console.log(this.confessionData);
-      })
-  }
+  @Input()
+  addHandler: Function;
 
-  ngOnInit(): void {
+  addConfession(confession: Confession) {
+    this.confessionService.addConfession(confession).then((newConfession: Confession) => {
+      this.addHandler(newConfession);
+    });
   }
 
 }

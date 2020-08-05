@@ -6,12 +6,12 @@ import { Confession } from '../confession';
   selector: 'app-confessions',
   templateUrl: './confessions.component.html',
   styleUrls: ['./confessions.component.css'],
+  providers: [ConfessionService]
 })
 export class ConfessionsComponent implements OnInit {
 
-  title = 'ConfessionLib';
   constructor(private confessionService: ConfessionService) {}
-  public confessionData = [];
+  confessionData: Confession[];
   confession : Confession;
   _id : string
   submission : string;
@@ -28,20 +28,29 @@ export class ConfessionsComponent implements OnInit {
     }
     else{
       console.log("In the else statement of nextConfession");
-      this.confessionService.getConfessionList().subscribe((data) => {
-        this.confessionData = Array.from(Object.keys(data), k=>data[k]);
-        this.index = Math.floor(Math.random() * Math.floor(this.confessionData.length))
-        this.confession = this.confessionData[this.index];
-      })
+      this.confessionService.getConfessions().then((confessions: Confession[]) => {
+        this.confessionService
+        .getConfessions()
+        .then((confessions: Confession[]) => {
+          this.confessionData = Array.from(Object.keys(confessions), k=>confessions[k]);
+          console.log(this.confessionData);
+          this.index = Math.floor(Math.random() * Math.floor(this.confessionData.length))
+          this.confession = this.confessionData[this.index];
+        });
+      });
     }
   }
 
   ngOnInit() { 
-    this.confessionService.getConfessionList().subscribe((data) => {
-      this.confessionData = Array.from(Object.keys(data), k=>data[k]);
-      console.log(this.confessionData);
-      this.index = Math.floor(Math.random() * Math.floor(this.confessionData.length))
-      this.confession = this.confessionData[this.index];
+    this.confessionService.getConfessions().then((confessions: Confession[]) => {
+      this.confessionService
+      .getConfessions()
+      .then((confessions: Confession[]) => {
+        this.confessionData = Array.from(Object.keys(confessions), k=>confessions[k]);
+        console.log(this.confessionData);
+        this.index = Math.floor(Math.random() * Math.floor(this.confessionData.length))
+        this.confession = this.confessionData[this.index];
+      });
     });
   } 
 }
