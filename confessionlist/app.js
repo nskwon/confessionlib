@@ -9,6 +9,10 @@ var CONFESSIONS_COLLECTION = "confessions";
 var db;
 
 var app = express();
+app.use(bodyParser.json());
+
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 
 //connect to mongodb
 mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
