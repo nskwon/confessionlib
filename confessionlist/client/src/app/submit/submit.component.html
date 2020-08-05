@@ -1,9 +1,8 @@
 <div class = "container">
     <h2 class = "page-header"> Write a Confession </h2>
-    <form (submit) ="addConfession()">
-        <div class = "form-group">
-            <input type = "text" [(ngModel)] = "submission" name = "submission" maxlength = "" class = "form-control">
-        </div>
-        <input type = "submit" class = "btn btn btn-success" value = "Add">
-    </form>
+    <div class="form-group">
+        <label for="confession-submission">Submission</label>
+        <input class="form-control" name="confession-submission" [(ngModel)]="confession.submission" placeholder="Submission"/>
+    </div>
+    <button class="btn btn-primary" *ngIf="!confession._id" (click)="addConfession(confession)">Create</button>
 </div>
