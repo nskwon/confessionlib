@@ -2,7 +2,7 @@
     <h2 class = "page-header"> Write a Confession </h2>
     <div class="form-group">
         <label for="confession-submission">Submission</label>
-        <input class="form-control" name="confession-submission" [(ngModel)]="confession.submission" placeholder="Submission"/>
+        <input class="form-control" name="confession-submission" [(ngModel)]="confession.submission"/>
     </div>
-    <button class="btn btn-primary" *ngIf="!confession._id" (click)="addConfession(confession)">Submit</button>
+    <button class="btn btn-primary" (click)="addConfession(confession)">Submit</button>
 </div>
