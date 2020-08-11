@@ -8,18 +8,23 @@ import { Confession } from '../confession';
   styleUrls: ['./submit.component.css']
 })
 export class SubmitComponent {
+  confessiondata: Confession[];
+  confession: Confession;
+  submission: string;
+  date: Date;
 
   constructor(private confessionService: ConfessionService) {}
-  @Input()
-  confession: Confession;
 
-  @Input()
-  addHandler: Function;
+  addConfession(){
+    const newConfession ={
+      submission: this.submission,
+      date: this.date
+    }
 
-  addConfession(confession: Confession) {
-    this.confessionService.addConfession(confession).then((newConfession: Confession) => {
-      this.addHandler(newConfession);
+    this.confessionService.addConfession(newConfession).then((newConfession: Confession) => {
+      this.confessiondata.push(newConfession);
     });
+
   }
 
 }

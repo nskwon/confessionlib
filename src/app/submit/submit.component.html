@@ -1,8 +1,8 @@
 <div class = "container">
     <h2 class = "page-header"> Write a Confession </h2>
-    <div class="form-group">
-        <label for="confession-submission">Submission</label>
-        <input class="form-control" name="confession-submission" [(ngModel)]="confession.submission"/>
-    </div>
-    <button class="btn btn-primary" (click)="addConfession(confession)">Submit</button>
+    <form (submit) = "addConfession()">
+        <label>Submission</label>
+        <input type = "text" [(ngModel)] = "submission" name = "submission" class = "form-control">
+        <input type = "submit" class = "btn btn btn-success" value = "Submit"
+    </form>
 </div>
