@@ -105,5 +105,5 @@ app.get("/api/confessions", function(req, res) {
   });
 
   app.get('*', (request, response) => {
-    response.sendFile(path.join(__dirname, '/client/dist/client', 'index.html'));
+    response.sendFile(path.join(__dirname, '/client/src', 'index.html'));
   });
