@@ -9,12 +9,12 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "cd confessionlist; node app.js; cd client; ng serve",
-    "build": "cd confessionlist; cd client; ng build",
+    "start": "ng serve",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "cd confessionlist; cd client; ng build --output-path dist"
+    "postinstall": "ng build --output-path dist"
   },
   "repository": {
     "type": "git",
