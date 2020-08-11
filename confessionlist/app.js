@@ -16,10 +16,6 @@ if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('/client/dist/client'));
 }
 
-app.get('*', (request, response) => {
-	response.sendFile(path.join(__dirname, '/client/dist/client', 'index.html'));
-});
-
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
@@ -106,4 +102,8 @@ app.get("/api/confessions", function(req, res) {
         res.status(200).json(req.params.id);
       }
     });
+  });
+
+  app.get('*', (request, response) => {
+    response.sendFile(path.join(__dirname, '/client/dist/client', 'index.html'));
   });
