@@ -12,13 +12,13 @@ var db;
 var app = express();
 app.use(bodyParser.json());
 
-if (process.env.NODE_ENV === 'production') {
+/*if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('/client/dist/client'));
 }
 
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
-
+*/
 //connect to mongodb
 mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
   if (err) {
