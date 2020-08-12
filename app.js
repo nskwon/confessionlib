@@ -14,10 +14,6 @@ var db;
 var app = express();
 app.use(bodyParser.json());
 
-/*if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('/client/dist/client'));
-}*/
-
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
@@ -105,3 +101,11 @@ app.get("/api/confessions", function(req, res) {
       }
     });
   });
+
+  app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'src/index.html'), function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+  })
