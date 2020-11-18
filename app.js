@@ -1,7 +1,9 @@
 //importing modules
 var express = require("express");
 var bodyParser = require("body-parser");
-var mongodb = require("mongodb");
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://nskwon:Whaleblubber0@cluster-79l01cbw.mjvmq.mongodb.net/cluster-79l01cbw?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
 const path = require("path");
 var ObjectID = mongodb.ObjectID;
 const http = require('http');
@@ -16,10 +18,23 @@ app.use(bodyParser.json());
 
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
-
-//connect to mongodb
-mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
   if (err) {
+    console.log(err);
+    process.exit(1);
+  }
+
+  // Save database object from the callback for reuse.
+  db = client.db();
+  console.log("Database connection ready");
+
+  // Initialize the app.
+  var server = app.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
+  });if (err) {
     console.log(err);
     process.exit(1);
   }
@@ -51,6 +66,16 @@ app.get("/api/confessions", function(req, res) {
     });
   });
   
+  app.get("/api/confessions/:id", function(req, res) {
+    db.collection(CONFESSIONS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
+      if (err) {
+        handleError(res, err.message, "Failed to get confession");
+      } else {
+        res.status(200).json(doc);
+      }
+    });
+  });
+
   app.post("/api/confessions", function(req, res) {
     var newConfession = req.body;
     newConfession.createDate = new Date();
@@ -66,16 +91,6 @@ app.get("/api/confessions", function(req, res) {
         }
       });
     }
-  });
-
-  app.get("/api/confessions/:id", function(req, res) {
-    db.collection(CONFESSIONS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
-      if (err) {
-        handleError(res, err.message, "Failed to get confession");
-      } else {
-        res.status(200).json(doc);
-      }
-    });
   });
 
   app.put("/api/confessions/:id", function(req, res) {
