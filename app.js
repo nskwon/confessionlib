@@ -1,9 +1,7 @@
 //importing modules
 var express = require("express");
 var bodyParser = require("body-parser");
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://nskwon:Whaleblubber0@cluster-79l01cbw.mjvmq.mongodb.net/heroku_79l01cbw?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+var mongodb = require("mongodb");
 const path = require("path");
 var ObjectID = mongodb.ObjectID;
 const http = require('http');
@@ -18,9 +16,9 @@ app.use(bodyParser.json());
 
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
+
+//connect to mongodb
+mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
   if (err) {
     console.log(err);
     process.exit(1);
