@@ -2,7 +2,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://nskwon:Whaleblubber0@cluster-79l01cbw.mjvmq.mongodb.net/cluster-79l01cbw?retryWrites=true&w=majority";
+const uri = "mongodb+srv://nskwon:Whaleblubber0@cluster-79l01cbw.mjvmq.mongodb.net/heroku_79l01cbw?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true });
 const path = require("path");
 var ObjectID = mongodb.ObjectID;
