@@ -18,7 +18,7 @@ var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
 //connect to mongodb
-mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb+srv://nskwon:5Z9WVaa5HhQbZEgM@cluster0.mjvmq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", function (err, client) {
+mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://nskwon:5Z9WVaa5HhQbZEgM@cluster0-shard-00-00.mjvmq.mongodb.net:27017,cluster0-shard-00-01.mjvmq.mongodb.net:27017,cluster0-shard-00-02.mjvmq.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-i4nxo2-shard-0&authSource=admin&retryWrites=true&w=majority", function (err, client) {
   if (err) {
     console.log(err);
     process.exit(1);
