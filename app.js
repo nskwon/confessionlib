@@ -18,7 +18,7 @@ var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
 //connect to mongodb
-mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/test", function (err, client) {
+mongodb.MongoClient.connect(process.env.MONGODB_URI || "mongodb+srv://nskwon:5Z9WVaa5HhQbZEgM@cluster0.mjvmq.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", function (err, client) {
   if (err) {
     console.log(err);
     process.exit(1);

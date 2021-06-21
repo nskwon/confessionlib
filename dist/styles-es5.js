@@ -17,13 +17,13 @@
 
       exports = ___CSS_LOADER_API_IMPORT___(true); // Module
 
-      exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nhtml { \n    background: url('sakurabackground.jpg') no-repeat center center fixed;\n    background-size: cover;\n    overflow: hidden;\n}\nbody {\n    height: 100%;\n    overflow: auto;\n}", "", {
+      exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody {\n    height: 100%;\n    overflow: auto;\n}", "", {
         "version": 3,
         "sources": ["styles.css"],
         "names": [],
-        "mappings": "AAAA,8EAA8E;AAC9E;IACI,qEAAkF;IAIlF,sBAAsB;IACtB,gBAAgB;AACpB;AACA;IACI,YAAY;IACZ,cAAc;AAClB",
+        "mappings": "AAAA,8EAA8E;AAC9E;IACI,YAAY;IACZ,cAAc;AAClB",
         "file": "styles.css",
-        "sourcesContent": ["/* You can add global styles to this file, and also import other style files */\nhtml { \n    background: url(./app/home/img/sakurabackground.jpg) no-repeat center center fixed; \n    -webkit-background-size: cover;\n    -moz-background-size: cover;\n    -o-background-size: cover;\n    background-size: cover;\n    overflow: hidden;\n}\nbody {\n    height: 100%;\n    overflow: auto;\n}"]
+        "sourcesContent": ["/* You can add global styles to this file, and also import other style files */\nbody {\n    height: 100%;\n    overflow: auto;\n}"]
       }]); // Exports
 
       module.exports = exports;
